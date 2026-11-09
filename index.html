@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Плитка і фарбування — внутрішні роботи під ключ</title>
+<meta name="description" content="Укладання плитки, шпаклівка і фарбування. Рівні шви, чисті лінії, фіксована ціна в кошторисі.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --alt:#F6F1EA; --ink:#2A1A10; --muted:#6F5D50; --line:#E4DACD;
+  --brown:#4A2C1A; --on-brown:#FFFFFF; --walnut:#7A4B2B; --caramel:#B98253; --sand:#E7D8C6;
+  --btn:#4A2C1A; --btn-ink:#FFFFFF;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17100B; --alt:#20160F; --ink:#F4ECE2; --muted:#B6A596; --line:#35271C;
+    --brown:#2B1C12; --on-brown:#F4ECE2; --walnut:#8A5A38; --caramel:#D49B66; --sand:#E7D8C6;
+    --btn:#D49B66; --btn-ink:#17100B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17100B; --alt:#20160F; --ink:#F4ECE2; --muted:#B6A596; --line:#35271C;
+  --brown:#2B1C12; --on-brown:#F4ECE2; --walnut:#8A5A38; --caramel:#D49B66; --sand:#E7D8C6;
+  --btn:#D49B66; --btn-ink:#17100B; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 "Onest",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:"Unbounded","Onest",system-ui,sans-serif;margin:0;line-height:1.08;letter-spacing:-.02em}
+h1{font-weight:800;font-size:clamp(2.3rem,8.6vw,5.4rem)}
+h2{font-weight:600;font-size:clamp(1.7rem,5vw,3rem);margin-bottom:.5em}
+h3{font-weight:600;font-size:1.15rem}
+p{margin:0 0 1em;max-width:60ch}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--caramel);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+section{padding:84px 0}
+.btn{display:inline-block;padding:17px 28px;border-radius:999px;font:600 1rem "Onest",sans-serif;text-decoration:none;background:var(--btn);color:var(--btn-ink);border:2px solid var(--btn);cursor:pointer;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:inherit;border-color:currentColor}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+
+/* nav */
+.nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.logo{font:800 1.05rem "Unbounded",sans-serif;text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo i{width:22px;height:22px;background:var(--brown);border-radius:4px;box-shadow:8px 8px 0 -2px var(--caramel)}
+.nav a.tel{font-weight:600;text-decoration:none}
+
+/* hero */
+.hero{padding:30px 0 90px}
+.hero-grid{display:grid;gap:44px;align-items:center}
+.lead{font-size:1.2rem;color:var(--muted);margin-top:24px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px;padding:0;list-style:none}
+.chips li{padding:9px 16px;border:1.5px solid var(--line);border-radius:999px;font-size:.95rem;font-weight:500}
+.wall{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;padding:5px;background:var(--brown);border-radius:26px;aspect-ratio:1/1.08;width:100%;max-width:480px;justify-self:center;box-shadow:0 30px 60px -30px rgba(74,44,26,.6)}
+.wall span{border-radius:6px;opacity:0;transform:scale(.7)}
+.wall span.on{opacity:1;transform:none;transition:opacity .35s,transform .35s}
+.a{background:var(--brown)}.b{background:var(--walnut)}.c{background:var(--caramel)}.d{background:var(--sand)}.e{background:#fff}
+.wall .a{background:#3A2113}
+
+/* services */
+.alt{background:var(--alt)}
+.cards{display:grid;gap:18px}
+.card{background:var(--bg);border:1.5px solid var(--line);border-radius:26px;padding:30px;display:flex;flex-direction:column;gap:14px}
+.card .sw{height:84px;border-radius:14px}
+.card.tile .sw{background:
+ linear-gradient(90deg,transparent 0 calc(25% - 3px),var(--bg) calc(25% - 3px) 25%,transparent 25% calc(50% - 3px),var(--bg) calc(50% - 3px) 50%,transparent 50% calc(75% - 3px),var(--bg) calc(75% - 3px) 75%,transparent 75%),
+ linear-gradient(0deg,transparent 0 calc(50% - 3px),var(--bg) calc(50% - 3px) 50%,transparent 50%),var(--walnut)}
+.card.paint .sw{background:linear-gradient(90deg,var(--sand) 0 33%,var(--caramel) 33% 66%,var(--brown) 66%)}
+.card ul{margin:0;padding:0;list-style:none;color:var(--muted)}
+.card li{padding:7px 0;border-top:1px solid var(--line)}
+.card .pr{font:600 1.4rem "Unbounded",sans-serif;margin-top:auto}
+
+/* before-after */
+.ba{position:relative;aspect-ratio:16/10;border-radius:26px;overflow:hidden;user-select:none;--pos:50%;touch-action:pan-y;background:#999}
+.ba .l{position:absolute;inset:0}
+.before{background:
+ radial-gradient(circle at 20% 30%,rgba(0,0,0,.12) 0 6%,transparent 7%),
+ radial-gradient(circle at 70% 60%,rgba(255,255,255,.18) 0 9%,transparent 10%),
+ radial-gradient(circle at 45% 80%,rgba(0,0,0,.1) 0 7%,transparent 8%),
+ linear-gradient(115deg,transparent 48%,rgba(0,0,0,.25) 48.4% 49%,transparent 49.4%),#A29A90}
+.after{clip-path:inset(0 0 0 var(--pos));background:#fff}
+.after .paint{position:absolute;left:0;right:0;top:0;height:34%;background:var(--sand)}
+.after .tiles{position:absolute;left:0;right:0;bottom:0;height:66%;background:
+ repeating-linear-gradient(90deg,transparent 0 calc(12.5% - 3px),#fff calc(12.5% - 3px) 12.5%),
+ repeating-linear-gradient(0deg,transparent 0 calc(25% - 3px),#fff calc(25% - 3px) 25%),var(--walnut);box-shadow:inset 0 6px 0 var(--brown)}
+.tag{position:absolute;top:14px;padding:6px 14px;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;font-size:.85rem;font-weight:600}
+.tag.r{right:14px}.tag.s{left:14px}
+.ba .bar{position:absolute;top:0;bottom:0;left:var(--pos);width:3px;background:#fff;transform:translateX(-50%);pointer-events:none}
+.ba .bar::after{content:"↔";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:#fff;color:#2A1A10;display:grid;place-items:center;font-size:1.2rem;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba:has(input:focus-visible){outline:3px solid var(--caramel);outline-offset:3px}
+
+/* calculator */
+.calc{background:var(--brown);color:var(--on-brown);border-radius:34px;padding:34px;display:grid;gap:26px}
+.calc p{opacity:.85}
+.calc label{display:block;font-weight:600;margin-bottom:6px}
+.calc select,.calc input{width:100%;padding:15px 18px;font:inherit;border-radius:14px;border:0;background:#fff;color:#2A1A10}
+.calc .out{font:800 clamp(2.1rem,7vw,3.4rem) "Unbounded",sans-serif;color:var(--sand)}
+.calc small{opacity:.75;display:block;margin-top:4px}
+.calc .btn{background:var(--sand);border-color:var(--sand);color:#2A1A10}
+
+/* process */
+.steps{list-style:none;padding:0;margin:0;display:grid;gap:14px;counter-reset:s}
+.steps li{counter-increment:s;background:var(--bg);border:1.5px solid var(--line);border-radius:22px;padding:22px 24px 22px 84px;position:relative}
+.steps li::before{content:counter(s);position:absolute;left:22px;top:20px;width:44px;height:44px;border-radius:12px;background:var(--brown);color:var(--on-brown);display:grid;place-items:center;font:600 1.1rem "Unbounded",sans-serif}
+.steps b{display:block;font-weight:600}
+.steps span{color:var(--muted)}
+
+/* faq */
+details{border-bottom:1.5px solid var(--line);padding:20px 0}
+summary{cursor:pointer;font:600 1.05rem "Onest",sans-serif;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.5rem;line-height:1;transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin:12px 0 0;color:var(--muted)}
+
+/* cta */
+.cta{background:var(--brown);color:var(--on-brown);border-radius:38px;padding:54px 28px;text-align:left}
+.cta p{opacity:.85}
+.cta .btn{background:var(--sand);border-color:var(--sand);color:#2A1A10}
+.cta .btn.ghost{background:transparent;color:var(--on-brown);border-color:var(--on-brown)}
+footer{padding:30px 0 100px;color:var(--muted);font-size:.9rem}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;padding:15px 22px;border-radius:999px;background:var(--btn);color:var(--btn-ink);font-weight:600;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+
+@media (min-width:860px){
+  .hero-grid{grid-template-columns:1.2fr .8fr}
+  .cards{grid-template-columns:1fr 1fr}
+  .calc{grid-template-columns:1fr 1fr;padding:52px;align-items:center}
+  .calc .head{grid-column:1/-1}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .cta{padding:72px}
+  .fab{display:none}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.wall span{transition:none!important}.btn{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav">
+    <a class="logo" href="#top"><i></i>Плитка &amp; Фарба</a>
+    <a class="tel" href="tel:+380000000000">+38 (0XX) XXX-XX-XX</a>
+  </nav>
+</div>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Плитка і фарба без компромісів.</h1>
+      <p class="lead">Внутрішні роботи під ключ для квартир і будинків. Рівні шви, прямі кути, чисті лінії та ціна, яку ми фіксуємо в договорі.</p>
+      <div class="btns">
+        <a class="btn" href="#calc">Порахувати вартість</a>
+        <a class="btn ghost" href="tel:+380000000000">Зателефонувати</a>
+      </div>
+      <ul class="chips">
+        <li>Кошторис за 1 день</li>
+        <li>Гарантія на роботу</li>
+        <li>Прибираємо після себе</li>
+      </ul>
+    </div>
+    <div class="wall" id="wall" aria-hidden="true"></div>
+  </div>
+</header>
+
+<section class="alt" id="services">
+  <div class="wrap">
+    <h2>Що ми робимо</h2>
+    <div class="cards">
+      <article class="card tile">
+        <div class="sw"></div>
+        <h3>Укладання плитки</h3>
+        <ul>
+          <li>Ванні, санвузли, кухні, коридори</li>
+          <li>Керамограніт і великий формат</li>
+          <li>Мозаїка, фартухи, тепла підлога</li>
+          <li>Гідроізоляція і вирівнювання основи</li>
+        </ul>
+        <div class="pr">від 450 грн/м²</div>
+      </article>
+      <article class="card paint">
+        <div class="sw"></div>
+        <h3>Шпаклівка і фарбування</h3>
+        <ul>
+          <li>Вирівнювання стін і стель під фарбування</li>
+          <li>Ґрунтування і 2–3 шари фарби</li>
+          <li>Декоративні покриття та штукатурка</li>
+          <li>Захист меблів і підлоги</li>
+        </ul>
+        <div class="pr">від 120 грн/м²</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="result">
+  <div class="wrap">
+    <h2>Було і стало</h2>
+    <p>Потягніть повзунок. Так змінюється стіна після нашої роботи.</p>
+    <div class="ba" id="ba">
+      <div class="l before"></div>
+      <div class="l after"><div class="paint"></div><div class="tiles"></div></div>
+      <span class="tag s">До</span><span class="tag r">Після</span>
+      <div class="bar"></div>
+      <input type="range" min="0" max="100" value="50" aria-label="Порівняння до і після" id="rng">
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="calc">
+  <div class="wrap">
+    <div class="calc">
+      <div class="head">
+        <h2>Орієнтовна вартість</h2>
+        <p>Оберіть вид робіт і площу. Точну суму назвемо після безкоштовного огляду.</p>
+      </div>
+      <div>
+        <label for="type">Вид робіт</label>
+        <select id="type">
+          <option value="450">Укладання плитки на підлогу</option>
+          <option value="320">Плитка на стіни</option>
+          <option value="150">Шпаклівка стін</option>
+          <option value="120">Фарбування стін</option>
+          <option value="140">Фарбування стелі</option>
+          <option value="270">Шпаклівка і фарбування стін</option>
+        </select>
+        <br><br>
+        <label for="area">Площа, м²</label>
+        <input id="area" type="number" min="1" max="1000" value="20" inputmode="decimal">
+      </div>
+      <div>
+        <div class="out" id="out" aria-live="polite">9 000 грн</div>
+        <small>Тільки робота, без матеріалів. Ціни орієнтовні.</small>
+        <div class="btns"><a class="btn" href="tel:+380000000000">Замовити точний кошторис</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <h2>Як ми працюємо</h2>
+    <ol class="steps">
+      <li><b>Заявка і виїзд</b><span>Ви телефонуєте, ми приїжджаємо і міряємо об’єкт безкоштовно.</span></li>
+      <li><b>Кошторис і договір</b><span>Фіксуємо ціну, терміни та перелік робіт.</span></li>
+      <li><b>Підготовка основи</b><span>Вирівнюємо, ґрунтуємо, гідроізолюємо. Від цього залежить довговічність.</span></li>
+      <li><b>Плитка і фарба</b><span>Працюємо за рівнем і лінійкою. Затираємо, шпаклюємо, фарбуємо.</span></li>
+      <li><b>Прибирання і здача</b><span>Вивозимо сміття, показуємо результат, підписуємо акт.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="alt" id="faq">
+  <div class="wrap">
+    <h2>Часті питання</h2>
+    <details><summary>Матеріали купуєте ви чи ми?</summary><p>Як вам зручніше. Можемо допомогти підрахувати кількість і підібрати матеріали, щоб не було зайвих витрат.</p></details>
+    <details><summary>Скільки часу займає ремонт ванної?</summary><p>Зазвичай від 7 до 14 днів залежно від площі та стану основи. Точні терміни вказуємо в договорі.</p></details>
+    <details><summary>Чи є гарантія?</summary><p>Так. Недоліки, які виникли з нашої вини, усуваємо безкоштовно протягом гарантійного терміну.</p></details>
+    <details><summary>Працюєте з нашим дизайн-проєктом?</summary><p>Так, виконуємо за вашим проєктом або допомагаємо з розкладкою плитки.</p></details>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="cta">
+      <h2>Розкажіть, що потрібно зробити</h2>
+      <p>Зателефонуйте або напишіть у месенджер. Надішліть фото чи план, і ми порахуємо вартість.</p>
+      <div class="btns">
+        <a class="btn" href="tel:+380000000000">+38 (0XX) XXX-XX-XX</a>
+        <a class="btn ghost" href="https://t.me/your_username">Telegram</a>
+        <a class="btn ghost" href="viber://chat?number=%2B380000000000">Viber</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">© 2026 Плитка &amp; Фарба. Працюємо щодня з 8:00 до 20:00.</div></footer>
+<a class="fab" href="tel:+380000000000">Зателефонувати</a>
+
+<script>
+(function(){
+  var w=document.getElementById('wall'),pat='abdcabeaccbdadbcaebdacbdeabcdacbdaeb',h='';
+  for(var i=0;i<36;i++){h+='<span class="'+pat[i%pat.length]+'"></span>';}
+  w.innerHTML=h;
+  var cs=w.children,reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  for(var j=0;j<cs.length;j++){(function(el,d){
+    if(reduce){el.className+=' on';}else{setTimeout(function(){el.className+=' on';},d);}
+  })(cs[j],200+j*55);}
+
+  var ba=document.getElementById('ba'),r=document.getElementById('rng');
+  r.addEventListener('input',function(){ba.style.setProperty('--pos',r.value+'%');});
+
+  var t=document.getElementById('type'),a=document.getElementById('area'),o=document.getElementById('out');
+  function c(){
+    var v=Math.round((parseFloat(a.value)||0)*(parseFloat(t.value)||0));
+    o.textContent=v.toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0')+' грн';
+  }
+  t.addEventListener('change',c);a.addEventListener('input',c);c();
+})();
+</script>
+</body>
+</html>
